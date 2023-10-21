@@ -9,6 +9,7 @@
 
 int main() {
 char command[MAX_COMMAND_LENGTH];
+pid_t pid;
 while (1) {
 printf("simple_shell> ");
 if (fgets(command, sizeof(command), stdin) == NULL) {
@@ -16,7 +17,7 @@ printf("\nExiting shell\n");
 break;
 }
 command[strcspn(command, "\n")] = '\0';
-pid_t pid = fork();
+pid = fork();
 if (pid < 0) {
 perror("Fork failed");
 exit(EXIT_FAILURE);
